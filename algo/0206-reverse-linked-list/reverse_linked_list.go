@@ -5,6 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//链表反转
 func ReverseList(head *ListNode) *ListNode {
 	if nil == head || nil == head.Next {
 		return head
