@@ -54,3 +54,28 @@ func levelOrder(root *TreeNode) []int {
 
 	return ret
 }
+
+func levelOrder2(root *TreeNode) []int {
+	ret := []int{}
+	if root == nil {
+		return ret
+	}
+
+	stack := []*TreeNode{root}
+	i := 0
+
+	for i < len(stack) {
+		ret = append(ret, stack[i].Val)
+		if stack[i].Left != nil {
+			stack = append(stack, stack[i].Left)
+		}
+
+		if stack[i].Right != nil {
+			stack = append(stack, stack[i].Right)
+		}
+
+		i++
+	}
+
+	return ret
+}
