@@ -5,11 +5,11 @@ func SpiralOrder(matrix [][]int) []int {
 		return []int{}
 	}
 
-	row := len(matrix)    //列长度
-	col := len(matrix[0]) //行长度
+	col := len(matrix)    //列长度
+	row := len(matrix[0]) //行长度
 
 	ret := make([]int, row*col)                    //返回值
-	top, left, right, bottom := 0, 0, col-1, row-1 //上，左，右，下	左上角00
+	top, left, right, bottom := 0, 0, row-1, col-1 //上，左，右，下	左上角00
 	index := 0                                     //当前位置索引
 
 	for top <= bottom && left <= right {
