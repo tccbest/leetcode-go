@@ -5,6 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
+//暴力解法
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	//设置哨兵节点
 	temp := &ListNode{0, nil}
@@ -30,4 +31,24 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	first.Next = first.Next.Next
 
 	return temp.Next
+}
+
+//快慢指针
+func removeNthFromEnd2(head *ListNode, n int) *ListNode {
+	//设置哨兵节点
+	dummy := &ListNode{0, head}
+	first, second := head, dummy
+
+	for i := 0; i < n; i++ {
+		first = first.Next
+	}
+
+	for first != nil {
+		first = first.Next
+		second = second.Next
+	}
+
+	second.Next = second.Next.Next
+
+	return second.Next
 }
