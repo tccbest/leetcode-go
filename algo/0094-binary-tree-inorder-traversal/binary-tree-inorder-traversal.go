@@ -22,3 +22,26 @@ func inorder(root *common.TreeNode, ret *[]int) {
 		inorder(root.Right, ret)
 	}
 }
+
+//非递归
+func inorderTraversal2(root *common.TreeNode) []int {
+	ret := []int{}
+	if root == nil {
+		return ret
+	}
+
+	stack := []*common.TreeNode{}
+	for root != nil || len(stack) > 0 {
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		ret = append(ret, node.Val)
+		root = root.Right
+	}
+
+	return ret
+}
