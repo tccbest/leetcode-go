@@ -1,17 +1,14 @@
 package _206_reverse_linked_list
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "leetcode-go/common"
 
-//链表反转
-func ReverseList(head *ListNode) *ListNode {
+//链表反转 - 迭代
+func ReverseList(head *common.ListNode) *common.ListNode {
 	if nil == head || nil == head.Next {
 		return head
 	}
 
-	var pre *ListNode
+	var pre *common.ListNode
 
 	cur := head
 	for cur != nil {
@@ -23,4 +20,17 @@ func ReverseList(head *ListNode) *ListNode {
 	}
 
 	return pre
+}
+
+//递归
+func ReverseList2(head *common.ListNode) *common.ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	newHead := ReverseList2(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+
+	return newHead
 }
