@@ -12,11 +12,16 @@ func ReverseList(head *common.ListNode) *common.ListNode {
 
 	cur := head
 	for cur != nil {
-		// temp := cur.Next
-		// cur.Next = pre
-		// pre = cur
-		// cur = temp
-		cur.Next, pre, cur = pre, cur, cur.Next
+		//保存next节点
+		temp := cur.Next
+
+		//next指向前一个节点
+		cur.Next = pre
+
+		//pre，cur往后移动一位
+		pre = cur
+		cur = temp
+		//cur.Next, pre, cur = pre, cur, cur.Next
 	}
 
 	return pre
