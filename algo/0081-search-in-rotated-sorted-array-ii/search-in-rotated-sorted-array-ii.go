@@ -8,36 +8,33 @@ func search(nums []int, target int) bool {
 	left := 0
 	right := len(nums) - 1
 	for left <= right {
-		for left < right && nums[left] == nums[left+1] {
-			left++
-		}
-
-		for left < right && nums[right] == nums[right-1] {
-			right--
-		}
-
-		mid := left + (right - left) >> 1
+		mid := left + (right-left)>>1
 		if nums[mid] == target {
 			return true
 		}
 
+		if nums[left] == nums[mid] {
+			left++
+			continue
+		}
+
+		//前半部分有序
 		if nums[left] < nums[mid] {
+			//target在前半
 			if nums[left] <= target && target <= nums[mid] {
-				right = mid
+				right = mid - 1
 			} else {
-				left = mid
+				left = mid + 1
 			}
-		} else if nums[mid] < nums[right] {
+		} else {
+			//后半部分有序
+			//target在后半
 			if nums[mid] <= target && target <= nums[right] {
-				left = mid
+				left = mid + 1
 			} else {
-				right = mid
+				right = mid - 1
 			}
 		}
-	}
-
-	if nums[left] == target || nums[right] == target {
-		return true
 	}
 
 	return false
